@@ -21,16 +21,9 @@ var loadedInitData = false;
     super.initState();
   }
 
-
-  void removeMeal(String mealId){
-    setState(() {
-      displayedMeals.removeWhere((meal) => meal.id == mealId);
-    });
-
-  }
   @override
   void didChangeDependencies() {
-    if(loadedInitData== false){
+    if(!loadedInitData){
       final routeArgs =
       ModalRoute.of(context).settings.arguments as Map<String, String>;
       categoryTitle = routeArgs['title'];
@@ -41,9 +34,17 @@ var loadedInitData = false;
       loadedInitData= true;
     }
 
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
+
+
+  void removeMeal(String mealId){
+    setState(() {
+      displayedMeals.removeWhere((meal) => meal.id == mealId);
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,6 @@ var loadedInitData = false;
             duration: displayedMeals[index].duration,
             affordability: displayedMeals[index].affordability,
             complexity: displayedMeals[index].complexity,
-            removeItem: removeMeal,
           );
         },
         itemCount: displayedMeals.length,
