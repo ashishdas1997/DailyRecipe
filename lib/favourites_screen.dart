@@ -13,7 +13,7 @@ class FavouritesScreen extends StatelessWidget {
         child: Text('You have no favourites yet - start adding some!'),
       );
     }else{
-      ListView.builder(
+     return ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
             id: favouriteMeals[index].id,
